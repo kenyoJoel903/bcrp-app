@@ -1,14 +1,22 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-menu [content]="content">
+  <ion-header *ngIf="loadReady">
+    <ion-toolbar color="primary">
+      <ion-title>Pal vuelto!</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content *ngIf="loadReady">
+    <ion-list>
+      <button menuClose ion-item *ngFor="let menu of appMenuItems" (click)="openPage(menu)">
+        <ion-icon item-left [name]="menu.icon"></ion-icon>
+          {{menu.title}}
+      </button>
+      <button menuClose ion-item (click)="exitApp()">
+        <ion-icon item-left name="power"></ion-icon>
+        Salir
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
