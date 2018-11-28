@@ -1,0 +1,7 @@
+{
+  "name": "bcrp-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
