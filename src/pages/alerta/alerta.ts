@@ -1,3 +1,6 @@
+import { ProviderDbProvider } from './../../providers/provider-db/provider-db';
+import { ProviderAppProvider } from './../../providers/provider-app/provider-app';
+import { Alerta } from './../../_entity/alerta';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,11 +18,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AlertaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  alertas:Array<Alerta>=[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appProvider:ProviderAppProvider,
+    private providerdb:ProviderDbProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlertaPage');
+  }
+
+  private listarAlertas(){
+    this.providerdb.alertaDAO.listarAlertas()
+      .then(response=>{
+        this.alertas = response;
+        this.obtenerUltimasAlertas();
+      })
+  }
+
+  obtenerUltimasAlertas(){
+    let lastId = 0;
+    if(this.alertas.length > 0){
+      lastId = this.alertas[0].id;
+    }
+    this.appProvider.alertaAPI.listarAlertas(lastId)
+      .then(_alertas=>{
+        _alertas.forEach(a=>{
+          this.providerdb.alertaDAO.guardar(a)
+            .then(res=>{
+              this.alertas.push(res);
+            })
+        })
+      })
   }
 
 }
