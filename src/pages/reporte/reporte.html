@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>reporte</ion-title>
+    <ion-title>Reportar</ion-title>
     <button ion-button menuToggle>
       <ion-icon md="md-menu"></ion-icon>
     </button>
@@ -16,6 +16,47 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="container">
+        <ion-grid>
+                <ion-row>
+                        <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+                                    <div>
+                                                <img class="imagem_R" src="assets/imgs/ic_announcement.png" style="margin-top: 60px">
+                                              </div>
+                        </ion-col>
+            </ion-row>
+            <ion-row>
 
+                        <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+                              Consulta en la lista de billetes falsificados
+                        </ion-col>
+            </ion-row>
+          </ion-grid>
+    <ion-card> 
+      <ion-card-content>
+          
+          <form [formGroup]="form" (ngSubmit)="consultar()" novalidate>
+              <ion-list> 
+                  <ion-item>
+                      <ion-label stacked>Denominación *:</ion-label>
+                      <ion-select formControlName="denominacion" interface="popover">
+                          <ion-option *ngFor="let d of denominaciones" [value]="d.valor">
+                              {{d.valor}}
+                          </ion-option>
+                      </ion-select>
+
+                  </ion-item>
+                  <ion-item>
+                      <ion-label stacked>Serie *:</ion-label>
+                      <ion-input formControlName="serie" type="text" autofocus></ion-input>
+                  </ion-item>
+
+              </ion-list>
+              <div padding>
+                  <button ion-button block type="submit" [disabled]="form.invalid">Consultar</button>
+              </div>
+
+          </form>
+      </ion-card-content>
+    </ion-card>
 </ion-content>

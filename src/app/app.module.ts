@@ -28,6 +28,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { StartPage } from '../pages/start/start';
 import { SeguridadPage } from '../pages/seguridad/seguridad';
+import { ResultadoModalPage } from '../pages/resultado-modal/resultado-modal';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SeguridadPage } from '../pages/seguridad/seguridad';
     SelectorBilletePage,
     Billete_100Page,
     Billete_20Page,
-    SeguridadPage
+    SeguridadPage,
+    ResultadoModalPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { SeguridadPage } from '../pages/seguridad/seguridad';
     SelectorBilletePage,
     Billete_100Page,
     Billete_20Page,
-    SeguridadPage
+    SeguridadPage,
+    ResultadoModalPage
   ],
   providers: [
     StatusBar,

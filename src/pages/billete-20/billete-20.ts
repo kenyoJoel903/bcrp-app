@@ -32,7 +32,7 @@ export class Billete_20Page {
         c3: { inicio: { x: 160, y : 44}, fin: {x:202, y:80}, id: 2},
         c4: { inicio: { x: 31, y : 77}, fin: {x:72, y:112}, id: 1},
         c5: { inicio: { x: 117, y : 72}, fin: {x:159, y:113}, id : 3},
-        c6: { inicio: { x: 400, y : 163}, fin: {x:415, y:118}, id: 777},
+        c6: { inicio: { x: 400, y : 163}, fin: {x:415, y:118}, id: 17},
         c7: { inicio: { x: 158, y : 168}, fin: {x:204, y:200}, id: 6},
         c8: { inicio: { x: 327, y : 161}, fin: {x:371, y:200}, id: 4},
         c9: { inicio: { x: 379, y : 164}, fin: {x:413, y:200}, id: 6},

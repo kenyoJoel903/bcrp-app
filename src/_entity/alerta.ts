@@ -8,4 +8,5 @@ export class Alerta{
     serie:string;
     denominacion:Denominacion;
     usuario:Usuario;
+    descripcion:string;
 }

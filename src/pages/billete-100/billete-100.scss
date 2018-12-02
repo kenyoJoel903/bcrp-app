@@ -4,4 +4,21 @@ page-billete-100 {
         width: 440px;
         max-width:440px;
     }
+
+
+    .container{
+		background-color: #384455;
+		text-align: center;
+		display: flex;
+	  	justify-content: center;
+	  	align-items: center;
+	  	color:#fff;
+    }
+    
+
+    .image{
+        margin-top: 30px;
+        height:auto;
+        width: 80px;
+    }
 }

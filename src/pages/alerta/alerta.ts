@@ -31,30 +31,19 @@ export class AlertaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlertaPage');
+    this.obtenerUltimasAlertas();
   }
 
-  private listarAlertas(){
-    this.providerdb.alertaDAO.listarAlertas()
-      .then(response=>{
-        this.alertas = response;
-        this.obtenerUltimasAlertas();
-      })
-  }
+ 
 
   obtenerUltimasAlertas(){
     let lastId = 0;
-    if(this.alertas.length > 0){
-      lastId = this.alertas[0].id;
-    }
-    this.appProvider.alertaAPI.listarAlertas(lastId)
-      .then(_alertas=>{
-        _alertas.forEach(a=>{
-          this.providerdb.alertaDAO.guardar(a)
-            .then(res=>{
-              this.alertas.push(res);
-            })
-        })
-      })
+    this.appProvider.alertaAPI.listarAlertas(0)
+      .then(res=>{
+        this.alertas = res;
+      }).catch(error=>{
+        this.alertas = [];
+      });
   }
 
 }

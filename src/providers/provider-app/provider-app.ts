@@ -1,3 +1,4 @@
+import { BCRPAPI } from './bcr-api';
 import { PostAPI } from './post-api';
 import { DenominacionAPI } from './denominacion-api';
 import { AlertaAPI } from './alerta-api';
@@ -19,6 +20,7 @@ export class ProviderAppProvider {
   alertaAPI:AlertaAPI;
   denominacionAPI:DenominacionAPI;
   postAPI:PostAPI;
+  bcrAPI:BCRPAPI;
 
   constructor(public http: Http) {
     console.log('Hello ProviderAppProvider Provider');
@@ -34,6 +36,7 @@ export class ProviderAppProvider {
     this.alertaAPI = new AlertaAPI(this.http);
     this.denominacionAPI = new DenominacionAPI(this.http);
     this.postAPI = new PostAPI(this.http);
+    this.bcrAPI = new BCRPAPI(this.http);
   }
 
 }

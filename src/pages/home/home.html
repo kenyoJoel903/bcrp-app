@@ -1,17 +1,17 @@
 <ion-menu [content]="content">
   <ion-header *ngIf="loadReady">
     <ion-toolbar color="primary">
-      <ion-title>Pal vuelto!</ion-title>
+      <ion-title>Menú</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content *ngIf="loadReady">
     <ion-list>
       <button menuClose ion-item *ngFor="let menu of appMenuItems" (click)="openPage(menu)">
-        <ion-icon item-left [name]="menu.icon"></ion-icon>
+        <ion-icon item-left [name]="menu.icon" style="color:#0dc2e3"></ion-icon>
           {{menu.title}}
       </button>
       <button menuClose ion-item (click)="exitApp()">
-        <ion-icon item-left name="power"></ion-icon>
+        <ion-icon item-left name="power" style="color:red"></ion-icon>
         Salir
       </button>
     </ion-list>

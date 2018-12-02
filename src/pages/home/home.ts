@@ -1,5 +1,5 @@
+import { SelectorBilletePage } from './../selector-billete/selector-billete';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { AvisoPage } from './../aviso/aviso';
 import { StartPage } from './../start/start';
 import { Denominacion } from './../../_entity/denominacion';
 import { ProviderAppProvider } from './../../providers/provider-app/provider-app';
@@ -15,7 +15,6 @@ import { NavController, Nav, LoadingController, MenuController } from 'ionic-ang
 import { ScanerPage } from '../scaner/scaner';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { File } from '@ionic-native/file';
-import { SelectorBilletePage } from '../selector-billete/selector-billete';
 
 @Component({
   selector: 'page-home',
@@ -44,7 +43,7 @@ export class HomePage {
       {title: 'Billetes', component : SelectorBilletePage, icon: 'cash'},
       {title: 'Alertas', component: AlertaPage, icon: 'notifications'},
       //{title: 'Escanea tu billete', component: ScanerPage, icon: 'qr-scanner'},
-      {title: 'Reporta billetes', component: ReportePage, icon: 'sad'},
+      {title: 'Reportar', component: ReportePage, icon: 'sad'},
       //{title: 'Cambiar idioma', component: ReportePage, icon: 'cog'},
     ];
     this.loadReady = false;
@@ -84,7 +83,7 @@ export class HomePage {
     that.nativeStorage.getItem("usuario")
       .then(data=>{
         if(data.id){
-          that.nav.setRoot(AvisoPage)
+          that.nav.setRoot(HomePage)
             .then(data=>{
               that.loadReady = true;
             }).catch(error=>{
@@ -136,7 +135,7 @@ export class HomePage {
 
   private gotoUsuarioPage(){
     this.loadReady = true;
-    this.nav.setRoot(AvisoPage, {}, {keyboardClose: false})
+    this.nav.setRoot(SelectorBilletePage, {}, {keyboardClose: false})
       .then(data =>{
         console.log(data);
       }).catch(error=>{

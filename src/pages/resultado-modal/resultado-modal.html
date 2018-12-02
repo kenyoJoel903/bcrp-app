@@ -1,0 +1,41 @@
+<ion-content padding *ngIf="resultado" class="container">
+    <ion-grid >
+        <ion-row>
+                <ion-col col-11 style="font-size:28px">Resultado</ion-col>
+            <ion-col col-1 style="font-size:16px">
+ <ion-icon name="close-circle" (click)="close()"></ion-icon>
+            </ion-col>
+        </ion-row>  
+        <ion-row>
+            <ion-col style="font-size:75px;margin-top:4rem">
+                <ion-icon name="happy"></ion-icon>
+            </ion-col>
+        </ion-row>   
+        <ion-row>
+            <ion-col>
+              <p style="font-size:16px; padding: 2rem">Tu billete no se encuentra en la lista de billetes falsificados.</p>
+            </ion-col>
+        </ion-row>     
+    </ion-grid>
+</ion-content>
+
+<ion-content padding *ngIf="!resultado" class="bad">
+    <ion-grid >
+        <ion-row>
+                <ion-col col-11 style="font-size:28px">Cuidado</ion-col>
+            <ion-col col-1>
+ <ion-icon name="close-circle" (click)="close()"></ion-icon>
+            </ion-col>
+        </ion-row>  
+        <ion-row>
+            <ion-col style="font-size:75px;margin-top:4rem">
+                <ion-icon name="sad"></ion-icon>
+            </ion-col>
+        </ion-row>   
+        <ion-row>
+            <ion-col>
+              <p style="font-size:16px; padding: 2rem">El número ha sido reportado como inválido.</p>
+            </ion-col>
+        </ion-row>     
+    </ion-grid>
+</ion-content>

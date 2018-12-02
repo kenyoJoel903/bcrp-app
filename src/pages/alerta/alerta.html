@@ -10,5 +10,16 @@
 
 
 <ion-content padding>
-Alerta
+    <ion-list>
+        <ion-item *ngFor="let a of alertas">
+            <ion-avatar item-start style="color:rgb(18, 194, 194)">
+                <ion-icon name="notifications"></ion-icon>
+            </ion-avatar>
+            
+            <h4>Se ha reportado un billete de {{a.denominacion.valor}} como sospechoso</h4>
+            <h6>{{a.descripcion}}</h6>
+            <ion-badge color="primary">{{a.lugar}}</ion-badge>
+            {{a.fecha}}
+        </ion-item>
+    </ion-list>
 </ion-content>
