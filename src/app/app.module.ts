@@ -27,6 +27,7 @@ import { ProviderAppProvider } from '../providers/provider-app/provider-app';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { StartPage } from '../pages/start/start';
+import { SeguridadPage } from '../pages/seguridad/seguridad';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { StartPage } from '../pages/start/start';
     AvisoPage,
     SelectorBilletePage,
     Billete_100Page,
-    Billete_20Page
+    Billete_20Page,
+    SeguridadPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { StartPage } from '../pages/start/start';
     AvisoPage,
     SelectorBilletePage,
     Billete_100Page,
-    Billete_20Page
+    Billete_20Page,
+    SeguridadPage
   ],
   providers: [
     StatusBar,

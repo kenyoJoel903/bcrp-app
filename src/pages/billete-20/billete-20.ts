@@ -60,7 +60,10 @@ export class Billete_20Page {
     let y = Number(event.offsetY);
     let _cuadIndex = this.obtenerCuadrante(this.cuadrantesFront, x, y);
     console.log(_cuadIndex);
-    this.navCtrl.push(SeguridadPage, {'id': this.cuadrantesFront[_cuadIndex]['id'], 'page': 'BILLETE20' }, {keyboardClose:false});
+    if(_cuadIndex != ""){
+      this.navCtrl.setRoot(SeguridadPage, {'id': this.cuadrantesFront[_cuadIndex]['id'], 'page': 'BILLETE20' });
+    }
+    
   }
 
   back(event:any){
@@ -69,8 +72,10 @@ export class Billete_20Page {
     let y = Number(event.offsetY);
     let _cuadIndex = this.obtenerCuadrante(this.cuadrantesBack, x, y);
     console.log(_cuadIndex);
-
-    this.navCtrl.push(SeguridadPage, {'id': this.cuadrantesBack[_cuadIndex]['id'], 'page': 'BILLETE20' }, {keyboardClose:false});
+    if(_cuadIndex){
+      this.navCtrl.setRoot(SeguridadPage, {'id': this.cuadrantesBack[_cuadIndex]['id'], 'page': 'BILLETE20' });
+    }
+    
   }
 
   private obtenerCuadrante(cuadrante:any, x:number, y:number){

@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>billete-100</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Billete S/100</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -29,5 +29,9 @@
             <ion-col col-3>Menu</ion-col>
         </ion-row>
     </ion-grid>
-
+    <ion-fab right bottom>
+            <button ion-fab mini (click)="regresar()"> 
+                <ion-icon name="backspace"></ion-icon>
+            </button>
+        </ion-fab>
 </ion-content>

@@ -1,3 +1,4 @@
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Billete_100Page } from './../billete-100/billete-100';
 import { Billete_20Page } from './../billete-20/billete-20';
 import { ProviderAppProvider } from './../../providers/provider-app/provider-app';
@@ -19,12 +20,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SeguridadPage {
 
-  post:Post;
+  post:Post = null;
   page:string;
+
+  espaniol=true;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public api:ProviderAppProvider) {
+    public api:ProviderAppProvider, public screenOrientation:ScreenOrientation) {
+
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.unlock();
 
       let data = this.navParams.data;
       let id = data['id'];
@@ -52,6 +58,10 @@ export class SeguridadPage {
     if(this.page == 'BILLETE100'){
       this.navCtrl.setRoot(Billete_100Page);
     }
+  }
+
+  cambiarLengua(){
+    this.espaniol = !this.espaniol;
   }
 
 }

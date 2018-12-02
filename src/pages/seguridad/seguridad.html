@@ -1,20 +1,16 @@
-<!--
-  Generated template for the SeguridadPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title *ngIf="post">{{post.titulo}}</ion-title>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="post && espaniol">{{post.titulo}}</ion-title>
+    <ion-title *ngIf="post && !espaniol">{{post.tituloQuechua}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-grid *ngIf="post">
+    <ion-grid *ngIf="post && espaniol">
         <ion-row>
             <ion-col>
               <img [src]="post.image"/>
@@ -22,8 +18,43 @@
         </ion-row>
         <ion-row>
             <ion-col>
-              <p><{{post.cuerpo}}/p>
+              <p>{{post.cuerpo}}</p>
             </ion-col>
         </ion-row>
     </ion-grid>
+
+    <ion-grid *ngIf="post && !espaniol">
+        <ion-row>
+            <ion-col>
+              <img [src]="post.image"/>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+              <p>{{post.cuerpoQuechua}}</p>
+            </ion-col>
+        </ion-row>
+        
+    </ion-grid>
+
+    <ion-fab right bottom>
+        <button ion-fab mini (click)="regresar()"> 
+            <ion-icon name="backspace"></ion-icon>
+        </button>
+    </ion-fab>
+
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-row>
+            <ion-col col-6 center text-center (click)="cambiarLengua()">
+                    Español 
+            </ion-col>
+            <ion-col col-6 center text-center (click)="cambiarLengua()">
+                    <b style="font-size: 1.8rem">Quechua</b>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>
+

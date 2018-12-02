@@ -41,11 +41,11 @@ export class HomePage {
       
     this.menuCtl.enable(true);
     this.appMenuItems = [
-      {title: 'Billetes', component : SelectorBilletePage, icon: 'alert'},
-      {title: 'Alertas', component: AlertaPage, icon: 'alert'},
-      {title: 'Escanea tu billete', component: ScanerPage, icon: 'qr-scanner'},
+      {title: 'Billetes', component : SelectorBilletePage, icon: 'cash'},
+      {title: 'Alertas', component: AlertaPage, icon: 'notifications'},
+      //{title: 'Escanea tu billete', component: ScanerPage, icon: 'qr-scanner'},
       {title: 'Reporta billetes', component: ReportePage, icon: 'sad'},
-      {title: 'Cambiar idioma', component: ReportePage, icon: 'cog'},
+      //{title: 'Cambiar idioma', component: ReportePage, icon: 'cog'},
     ];
     this.loadReady = false;
   }
