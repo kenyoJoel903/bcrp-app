@@ -4,7 +4,8 @@ export const hackathonback = {
         usuarios: '/usuarios',
         alertas: '/alertas',
         images: '/images',
-        denominaciones :'/denominaciones'
+        denominaciones :'/denominaciones',
+        posts: '/posts'
     }
 };
 

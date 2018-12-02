@@ -1,20 +1,27 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>billete-20</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>billete-20</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-slides direction="horizontal" slidesPerView="1" 
-        loop="false" speed="200" pager="true" effect="coverflow" >
-            <ion-slide >
-                <img src="assets/imgs/20_front.jpeg"/>
-            </ion-slide>
-            <ion-slide >
-                <img src="assets/imgs/20_back.jpeg"/>
-            </ion-slide>
-    </ion-slides>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-9>
+                <ion-slides direction="horizontal" slidesPerView="1" loop="true" speed="200" pager="true" effect="flip">
+                    <ion-slide>
+                        <img src="assets/imgs/20_front.jpeg" class="billete" width="600" height="278" (click)="front($event)"/>
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="assets/imgs/20_back.jpeg"  class="billete" width="600" height="278" (click)="back($event)"/>
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+            <ion-col col-3>Menu</ion-col>
+        </ion-row>
+    </ion-grid>
+
 </ion-content>

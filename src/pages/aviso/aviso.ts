@@ -19,7 +19,7 @@ export class AvisoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private screenOrientation: ScreenOrientation) {
 
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       this.screenOrientation.unlock();
   }
 

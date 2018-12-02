@@ -36,7 +36,7 @@ export class HomePage {
     public dao:ProviderDbProvider, public nativeStorage: NativeStorage,
     private file:File, public api:ProviderAppProvider, private screenOrientation: ScreenOrientation) {
 
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       this.screenOrientation.unlock();
       
     this.menuCtl.enable(true);

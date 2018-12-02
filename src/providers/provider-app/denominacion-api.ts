@@ -25,7 +25,7 @@ export class DenominacionAPI{
             denominaciones = _data;
             return Promise.resolve(denominaciones);
         }).catch(error=>{
-            return Promise.reject(denominaciones);
+            return Promise.reject(error);
         })
  
     }

@@ -24,7 +24,7 @@ export class AlertaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private appProvider:ProviderAppProvider,
     private providerdb:ProviderDbProvider, private screenOrientation: ScreenOrientation) {
 
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       this.screenOrientation.unlock();
 
   }

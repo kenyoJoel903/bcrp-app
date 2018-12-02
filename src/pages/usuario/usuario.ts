@@ -24,7 +24,7 @@ export class UsuarioPage {
   form: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dao: ProviderDbProvider,
     private fb:FormBuilder,public api:ProviderAppProvider, private screenOrientation: ScreenOrientation) {
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     this.screenOrientation.unlock();
       this.form = this.fb.group({
         'nombres': new FormControl(''),

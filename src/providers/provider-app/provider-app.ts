@@ -1,3 +1,4 @@
+import { PostAPI } from './post-api';
 import { DenominacionAPI } from './denominacion-api';
 import { AlertaAPI } from './alerta-api';
 import { UsuarioApi } from './usuario-api';
@@ -17,6 +18,7 @@ export class ProviderAppProvider {
   usuarioAPI:UsuarioApi;
   alertaAPI:AlertaAPI;
   denominacionAPI:DenominacionAPI;
+  postAPI:PostAPI;
 
   constructor(public http: Http) {
     console.log('Hello ProviderAppProvider Provider');
@@ -31,6 +33,7 @@ export class ProviderAppProvider {
     this.usuarioAPI = new UsuarioApi(this.http);
     this.alertaAPI = new AlertaAPI(this.http);
     this.denominacionAPI = new DenominacionAPI(this.http);
+    this.postAPI = new PostAPI(this.http);
   }
 
 }
