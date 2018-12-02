@@ -1,0 +1,19 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+      <ion-title>Billetes</ion-title>
+      <button ion-button menuToggle>
+        <ion-icon md="md-menu"></ion-icon>
+      </button>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+    <ion-slides direction="vertical" slidesPerView="3>" 
+    loop="false" speed="500" pager="true" effect="coverflow" >
+        <ion-slide *ngFor="let d of denominaciones">
+            <img [src]="'assets/imgs/' + d.valor + '_1.png'" (click)="open(d)"/>
+        </ion-slide>
+      </ion-slides>
+</ion-content>

@@ -1,3 +1,6 @@
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { AvisoPage } from './../aviso/aviso';
+import { StartPage } from './../start/start';
 import { Denominacion } from './../../_entity/denominacion';
 import { ProviderAppProvider } from './../../providers/provider-app/provider-app';
 import { UsuarioPage } from './../usuario/usuario';
@@ -12,6 +15,7 @@ import { NavController, Nav, LoadingController, MenuController } from 'ionic-ang
 import { ScanerPage } from '../scaner/scaner';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { File } from '@ionic-native/file';
+import { SelectorBilletePage } from '../selector-billete/selector-billete';
 
 @Component({
   selector: 'page-home',
@@ -21,7 +25,7 @@ export class HomePage {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoadingPage;
+  rootPage: any = StartPage;
   appMenuItems: Array<MenuItem>;
   userReady: Boolean = false;
   loadReady: Boolean = false;
@@ -29,10 +33,15 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public loading: LoadingController, public menuCtl: MenuController,
     private sqlite:SQLite,
-    private collectorDB:ProviderDbProvider, public nativeStorage: NativeStorage,
-    private file:File, private appProvider:ProviderAppProvider) {
+    public dao:ProviderDbProvider, public nativeStorage: NativeStorage,
+    private file:File, public api:ProviderAppProvider, private screenOrientation: ScreenOrientation) {
+
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+      this.screenOrientation.unlock();
+      
     this.menuCtl.enable(true);
     this.appMenuItems = [
+      {title: 'Billetes', component : SelectorBilletePage, icon: 'alert'},
       {title: 'Alertas', component: AlertaPage, icon: 'alert'},
       {title: 'Escanea tu billete', component: ScanerPage, icon: 'qr-scanner'},
       {title: 'Reporta billetes', component: ReportePage, icon: 'sad'},
@@ -51,12 +60,13 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.validarSessiones();
+    this.api.setConfig();
   }
 
   private validarSessiones(){
     let that = this;
     let loader = this.loading.create({
-      content: 'Verificando sessiones iniciadas'
+      content: 'Iniciando...'
     });
     loader.present().then(()=>{
       if(that.loadReady){
@@ -69,11 +79,12 @@ export class HomePage {
   }
 
   iniciarVista(){
+    console.log('iniciar vista');
     let that = this;
     that.nativeStorage.getItem("usuario")
       .then(data=>{
         if(data.id){
-          that.nav.setRoot(AlertaPage)
+          that.nav.setRoot(AvisoPage)
             .then(data=>{
               that.loadReady = true;
             }).catch(error=>{
@@ -90,11 +101,16 @@ export class HomePage {
   }
 
   private crearBaseDatos(){
+    console.log('inciar bd');
     this.file.checkFile(this.file.applicationDirectory, 'databases/app.db')
       .then(data =>{
         this.initDataBase();
+      }).catch(error=>{
+        this.copydataBase().then(res=>{
+          this.initDataBase();
+        })
       })
-    this.iniciarVista();
+    1//this.iniciarVista();
   }
 
   private initDataBase(){
@@ -103,12 +119,12 @@ export class HomePage {
       name: 'app.db',
       location: 'default'
     }).then(db=>{
-      this.collectorDB.setDataBase(db);
-      this.appProvider.denominacionAPI.listarDenominaciones()
+      this.dao.setDataBase(db);
+      this.api.denominacionAPI.listarDenominaciones()
         .then(resp =>{
           let denonimaciones:Array<Denominacion> = resp || [];
           denonimaciones.forEach(d=>{
-            this.collectorDB.denominacionDAO.guardar(d);
+            this.dao.denominacionDAO.guardar(d);
           })
         })
       that.loadReady = true;
@@ -120,12 +136,27 @@ export class HomePage {
 
   private gotoUsuarioPage(){
     this.loadReady = true;
-    this.nav.setRoot(UsuarioPage, {}, {keyboardClose: false})
+    this.nav.setRoot(AvisoPage, {}, {keyboardClose: false})
       .then(data =>{
         console.log(data);
       }).catch(error=>{
         console.error(error);
       });
+  }
+
+  private copydataBase(){
+    return this.file.checkFile(this.file.applicationDirectory, 'www/assets/database/app.sqlite').then(data => {
+      this.file.copyFile(this.file.applicationDirectory + '/www/assets/database/', 'app.sqlite', this.file.applicationStorageDirectory + '/databases/', 'app.db').then(
+        succes => {
+          return Promise.resolve("database copied!");
+        }
+      ).catch(error => {
+        return Promise.resolve(error);
+      })
+    }).catch(error => {
+      console.log(error);
+    });
+
   }
 
 }

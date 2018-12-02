@@ -1,3 +1,4 @@
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { ProviderDbProvider } from './../../providers/provider-db/provider-db';
 import { ProviderAppProvider } from './../../providers/provider-app/provider-app';
 import { Alerta } from './../../_entity/alerta';
@@ -21,7 +22,11 @@ export class AlertaPage {
   alertas:Array<Alerta>=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private appProvider:ProviderAppProvider,
-    private providerdb:ProviderDbProvider) {
+    private providerdb:ProviderDbProvider, private screenOrientation: ScreenOrientation) {
+
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+      this.screenOrientation.unlock();
+
   }
 
   ionViewDidLoad() {

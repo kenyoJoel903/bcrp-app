@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the IdiomaPage page.
+ * Generated class for the StartPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,19 +11,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-idioma',
-  templateUrl: 'idioma.html',
+  selector: 'page-start',
+  templateUrl: 'start.html',
 })
-export class IdiomaPage {
+export class StartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private screenOrientation: ScreenOrientation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private screenOrientation:ScreenOrientation ) {
 
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-      this.screenOrientation.unlock();
+    this.screenOrientation.unlock();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad IdiomaPage');
+    console.log('ionViewDidLoad StartPage');
   }
 
 }

@@ -1,3 +1,4 @@
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { ProviderAppProvider } from './../../providers/provider-app/provider-app';
 import { ProviderDbProvider } from './../../providers/provider-db/provider-db';
 import { Usuario } from './../../_entity/usuario';
@@ -21,8 +22,10 @@ export class UsuarioPage {
 
   usuario:Usuario;
   form: FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dabprovider: ProviderDbProvider,
-    private fb:FormBuilder,private apiProvider:ProviderAppProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dao: ProviderDbProvider,
+    private fb:FormBuilder,public api:ProviderAppProvider, private screenOrientation: ScreenOrientation) {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    this.screenOrientation.unlock();
       this.form = this.fb.group({
         'nombres': new FormControl(''),
         'apellidos' : new FormControl(''),
@@ -36,16 +39,20 @@ export class UsuarioPage {
   }
 
   obtenerUsuario(){
-    this.dabprovider.usuarioDAO.obtenerUsuario()
+    this.dao.usuarioDAO.obtenerUsuario()
       .then(res=>{
+        console.log('Usuraio:',res);
         this.usuario = res;
+        this.initForm();
       }).catch(error=>{
+        console.log(error);
         this.usuario = {
           id: 0,
           nombres : '',
           apellidos: '',
           email : ''
-        }
+        };
+        this.initForm();
       })
   }
 
@@ -57,17 +64,18 @@ export class UsuarioPage {
     });
   }
 
-  private guardar(){
-    this.usuario.nombres = this.form.value['nombres'];
-    this.usuario.apellidos = this.form.value['apellidos'];
-    this.usuario.email = this.form.value['email'];
-    this.apiProvider.usuarioAPI.registrar(this.usuario)
+  public guardar(){
+    this.usuario.nombres = this.form.controls['nombres'].value;
+    this.usuario.apellidos = this.form.controls['apellidos'].value;
+    this.usuario.email = this.form.controls['email'].value;
+    this.api.usuarioAPI.registrar(this.usuario)
       .then(usu=>{
         this.usuario = usu;
-        this.dabprovider.usuarioDAO.eliminarTodo()
+        this.dao.usuarioDAO.eliminarTodo()
           .then(res=>{
             if(res == "OK"){
-              this.dabprovider.usuarioDAO.guardar(this.usuario);
+              this.dao.usuarioDAO.guardar(this.usuario);
+              
 
             }
           })

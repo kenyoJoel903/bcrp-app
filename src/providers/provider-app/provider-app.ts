@@ -20,6 +20,11 @@ export class ProviderAppProvider {
 
   constructor(public http: Http) {
     console.log('Hello ProviderAppProvider Provider');
+    
+  }
+
+  setConfig(){
+    this.initialize();
   }
 
   private initialize(){

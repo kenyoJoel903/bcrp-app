@@ -1,4 +1,4 @@
-page-loading {
+page-start {
     .container{
 		background-color: #005fbe;
 		text-align: center;
@@ -6,17 +6,7 @@ page-loading {
 		height: 100%;
 		display: flex;
 	  	justify-content: center;
-	  	align-items: center;
+	  	align-items: cen ter;
 	  	color:#fff;
 	}
-
 }
-
-ion-spinner * {
-    width: 28px;
-    height: 28px;
-    stroke: #444;
-    fill: #fff;
-    color:#fff;
-  }
-  
